@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>MVP</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    </head>
+
+<body ng-app="mvp-app">
+
+<nav class="navbar">
+<div class="container-fluid">
+<div class="navbar-header">
+    <a class="navbar-brand" href="#">MVP</a>
+</div>
+    <div>
+        <ul class="nav navbar-nav">
+            <li><a href="#">one</a></li>
+            <li><a href="#">two</a></li>
+        </ul>
+    </div>
+</div>
+</nav>
+
+<script type="text/javascript">
+    angular.module('mvp-app', [])
+    .controller('mvpController', function($scope, $http) {
+        $http.get('/docs').
+            success(function(data){
+                $scope.documents = data;
+                console.log(data);
+            });
+    });
+</script>
+
+
+
+<div class="container">
+<div class="row" ng-controller="mvpController">
+
+
+<div class="col-md-2">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <th>Name</th>
+            <th>Quote</th>
+        </thead>
+        <tr>
+            <td>greg</td>
+            <td>This is a test</td>
+        </tr>
+        <tr ng-repeat="doc in documents">
+            <td>{{doc.name}}</td>
+            <td>{{doc.quote}}</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="col-md-10">
+
+    <form class="form-horizontal" action="/items" method="POST">
+        <input class="form-control" type="text" placeholder="name" name="name">
+        <textarea class="form-control" name="quote"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+
+</div>
+
+</div>
+</div>
+
+    </body>
+
+</html>
