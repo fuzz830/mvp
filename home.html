@@ -86,7 +86,8 @@
                     <table class="table table-striped">
                         <tr>
                             <td><textarea class="tarea" id="heading" rows="1" >{{note.title}}</textarea></td>
-                            <td><textarea class="tarea label label-default" id="tags" rows="1">{{note.tags}}</textarea></td>
+                            <td>
+    <textarea ng-repeat="tag in note.tags" class="tarea label label-default" id="tags" rows="1" cols="10">{{tag}}</textarea></td>
                         </tr>
                     </table>
                     <p><textarea class="tarea" rows="1" cols="100">{{note.body}}</textarea></p>
