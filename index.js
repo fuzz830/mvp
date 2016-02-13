@@ -21,15 +21,15 @@ app.disable('x-powered-by');
 
 
 // Setup static files
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname + "/public")));
 
 
 // db setup
-var db = new Datastore({filename: '/Users/michaelmathes/Documents/Programming/mvp/mvp.db', autoload: true, timestampData: true});
+var db = new Datastore({filename: '/Users/michaelmathes/Documents/Programming/mvp/data/mvp.db', autoload: true, timestampData: true});
 
 // Default template
 app.get('/', function(req, res) {
-    res.sendFile('/Users/michaelmathes/Documents/Programming/mvp/home.html');
+    res.sendFile('/Users/michaelmathes/Documents/Programming/mvp/public/home.html');
 });
 
 // get all the notes
