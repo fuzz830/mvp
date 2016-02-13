@@ -1,0 +1,28 @@
+//Example note schema
+{
+
+    "type": "note",
+    "title": "a sample title",
+    "tags": [
+        {"tagType": "primary",
+         "tagBody": "a"},
+        {"tagType": "success",
+         "tagBody": "collection"},
+        {"tagType": "info",
+         "tagBody": "of"},
+        {"tagType": "danger",
+         "tagBody": "Tags"}
+        ],
+    "body": "markdown fomatted body"
+    "id"
+    "datecreated"
+    "dateupdated"
+}
+
+
+// <span class="label label-default">Default</span> //grey
+// <span class="label label-primary">Primary</span> //blue
+// <span class="label label-success">Success</span> //green
+// <span class="label label-info">Info</span>       //blue
+// <span class="label label-warning">Warning</span> //yellow
+// <span class="label label-danger">Danger</span>   //red
