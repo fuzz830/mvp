@@ -1,0 +1,11 @@
+textarea{
+    resize: none;
+}
+
+#heading {
+    font-weight: bold;
+}
+
+.tarea {
+    border: none;
+}

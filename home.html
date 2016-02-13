@@ -1,85 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>MVP</title>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>MVP</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
 
-        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <!-- Vendor Scrolls -->
+    <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap.min.css" />
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- My Scrolls -->
+    <link rel="stylesheet" href="mvp.css" />
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Vendor Spells -->
+    <script src="../vendor/jquery/dist/jquery.js"></script>
+    <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/vendor/angular/angular.js"></script>
+    <script src="/vendor/angular-route/angular-route.js"></script>
+    <script src="../vendor/ace-editor/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- My Spells -->
+    <!--    <script src="/js/pensieve.js"></script>
+    <script src="/js/pensieve-controllers.js"></script>
+    <script src="/apps/actions/actions-controller.js"></script>
+    <script src="/apps/reports/reports-controller.js"></script>
+    <script src="/apps/rml/rml-controller.js"></script>
+    <script src="/apps/time/time-controller.js"></script>
+    <script src="/apps/writer/writer-controller.js"></script>
+ -->
 
-    </head>
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
 
 <body ng-app="mvp-app">
-
-<nav class="navbar">
-<div class="container-fluid">
-<div class="navbar-header">
-    <a class="navbar-brand" href="#">MVP</a>
-</div>
-    <div>
-        <ul class="nav navbar-nav">
-            <li><a href="#">one</a></li>
-            <li><a href="#">two</a></li>
-        </ul>
-    </div>
-</div>
-</nav>
-
-<script type="text/javascript">
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">MVP</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#">one</a></li>
+                </ul>
+            </div>
+            <div class="nav navbar-nav navbar-right">
+                <form class="nav navbar-nav navbar-form" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                </form>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script type="text/javascript">
     angular.module('mvp-app', [])
-    .controller('mvpController', function($scope, $http) {
-        $http.get('/docs').
-            success(function(data){
-                $scope.documents = data;
+        .controller('mvpController', function($scope, $http) {
+            $http.get('/notes').
+            success(function(data) {
+                $scope.notes = data;
                 console.log(data);
             });
-    });
-</script>
+        });
+    </script>
 
 
+    <div class="container">
+        <div class="row" ng-controller="mvpController">
+    
+            <div class="col-md-8">
 
-<div class="container">
-<div class="row" ng-controller="mvpController">
+                <div ng-repeat="note in notes"
+                    <table class="table table-striped">
+                        <tr>
+                            <td><textarea class="tarea" id="heading" rows="1" >{{note.title}}</textarea></td>
+                            <td><textarea class="tarea label label-default" id="tags" rows="1">{{note.tags}}</textarea></td>
+                        </tr>
+                    </table>
+                    <p><textarea class="tarea" rows="1" cols="100">{{note.body}}</textarea></p>
 
+                </div>
 
-<div class="col-md-2">
-    <table class="table table-bordered table-striped">
-        <thead>
-            <th>Name</th>
-            <th>Quote</th>
-        </thead>
-        <tr>
-            <td>greg</td>
-            <td>This is a test</td>
-        </tr>
-        <tr ng-repeat="doc in documents">
-            <td>{{doc.name}}</td>
-            <td>{{doc.quote}}</td>
-        </tr>
-    </table>
-</div>
+            </div>
 
+            <div class="col-md-4">
+            <h4>This is a form</h4>
+                <form class="form-horizontal" action="/note" method="POST">
+                    <textarea class="form-control" type="title" placeholder="title" name="title"></textarea>
+                    <textarea class="form-control" name="tags" placeholder="tags" name="tags"></textarea>
+                    <textarea class="form-control" name="body" placeholder="body" name="body"></textarea>
+                    <button class="btn bnt-default" type="submit">Submit</button>
+                </form>
+            </div>
 
-<div class="col-md-10">
-
-    <form class="form-horizontal" action="/items" method="POST">
-        <input class="form-control" type="text" placeholder="name" name="name">
-        <textarea class="form-control" name="quote"></textarea>
-        <button type="submit">Submit</button>
-    </form>
-
-</div>
-
-</div>
-</div>
-
-    </body>
+        </div> <!-- end row -->
+    </div> <!-- end container -->
+</body>
 
 </html>
