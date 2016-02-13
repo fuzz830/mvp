@@ -21,8 +21,8 @@
     <script src="../vendor/ace-editor/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 
     <!-- My Spells -->
-    <!--    <script src="/js/pensieve.js"></script>
-    <script src="/js/pensieve-controllers.js"></script>
+    <script src="/js/mvpController.js"></script>
+<!--    <script src="/js/pensieve-controllers.js"></script>
     <script src="/apps/actions/actions-controller.js"></script>
     <script src="/apps/reports/reports-controller.js"></script>
     <script src="/apps/rml/rml-controller.js"></script>
@@ -65,17 +65,6 @@
             </div>
         </div>
     </nav>
-    <script type="text/javascript">
-    angular.module('mvp-app', [])
-        .controller('mvpController', function($scope, $http) {
-            $http.get('/notes').
-            success(function(data) {
-                $scope.notes = data;
-                console.log(data);
-            });
-        });
-    </script>
-
 
     <div class="container">
         <div class="row" ng-controller="mvpController">
@@ -85,12 +74,11 @@
                 <div ng-repeat="note in notes"
                     <table class="table table-striped">
                         <tr>
-                            <td><textarea class="tarea" id="heading" rows="1" >{{note.title}}</textarea></td>
-                            <td>
-    <textarea ng-repeat="tag in note.tags" class="tarea label label-default" id="tags" rows="1" cols="10">{{tag}}</textarea></td>
+    <td><textarea id={{note._id}} class="tarea" id="heading" rows="1" >{{note.title}}</textarea></td>
+    <td><textarea id={{note._id}} ng-repeat="tag in note.tags" class="tarea label label-default" id="tags" rows="1" cols="10">{{tag}}</textarea></td>
                         </tr>
                     </table>
-                    <p><textarea class="tarea" rows="1" cols="100">{{note.body}}</textarea></p>
+    <p><textarea id={{note._id}} class="tarea" rows="1" cols="100">{{note.body}}</textarea></p>
 
                 </div>
 

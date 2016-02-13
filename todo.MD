@@ -1,10 +1,15 @@
 #TODO
 
 
-- [] implement the new tag array system
+## Inline edit/update
+ - [X] Add _id to the div?
+ - [] migrate js controller functions to standaone file
+ - [] onblur run js function
 
-- [] make it so that we can update and edit
-     - onblur type of things
+
+
+
+- [] implement the new tag array system
 
 - [] is there a better way to translate label colors instead of storing
     bootstrap components in the database?

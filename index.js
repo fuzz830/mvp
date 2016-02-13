@@ -29,7 +29,7 @@ var db = new Datastore({filename: '/Users/michaelmathes/Documents/Programming/mv
 
 // Default template
 app.get('/', function(req, res) {
-    res.sendFile('/Users/michaelmathes/Documents/Programming/mvp/public/home.html');
+    res.sendFile('/Users/michaelmathes/Documents/Programming/mvp/public/partials/home.html');
 });
 
 // get all the notes
