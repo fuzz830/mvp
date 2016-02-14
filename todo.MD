@@ -4,7 +4,9 @@
 ## Inline edit/update
  - [X] Add _id to the div?
  - [] migrate js controller functions to standaone file
- - [] onblur run js function
+ - [] onblur run js function?
+ * Or should i set a ngModel for each div?
+ + try ng-blur
 
 
 

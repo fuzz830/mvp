@@ -6,36 +6,31 @@
     <title>MVP</title>
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="SitePoint">
-
     <!-- Vendor Scrolls -->
     <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap.min.css" />
-
     <!-- My Scrolls -->
-    <link rel="stylesheet" href="mvp.css" />
-
+    <link rel="stylesheet" href="/css/mvp.css" />
     <!-- Vendor Spells -->
     <script src="../vendor/jquery/dist/jquery.js"></script>
     <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
     <script src="/vendor/angular/angular.js"></script>
-    <script src="/vendor/angular-route/angular-route.js"></script>
+<!--     <script src="/vendor/angular-route/angular-route.js"></script>
     <script src="../vendor/ace-editor/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-
-    <!-- My Spells -->
+ -->    <!-- My Spells -->
     <script src="/js/mvpController.js"></script>
-<!--    <script src="/js/pensieve-controllers.js"></script>
+    <!--    <script src="/js/pensieve-controllers.js"></script>
     <script src="/apps/actions/actions-controller.js"></script>
     <script src="/apps/reports/reports-controller.js"></script>
     <script src="/apps/rml/rml-controller.js"></script>
     <script src="/apps/time/time-controller.js"></script>
     <script src="/apps/writer/writer-controller.js"></script>
  -->
-
-  <!--[if lt IE 9]>
+    <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 </head>
 
-<body ng-app="mvp-app">
+<body ng-app="mvpApp">
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -65,27 +60,27 @@
             </div>
         </div>
     </nav>
-
     <div class="container">
-        <div class="row" ng-controller="mvpController">
-    
+        <div class="row" ng-controller="MvpController">
             <div class="col-md-8">
-
-                <div ng-repeat="note in notes"
+                <div ng-repeat="note in notes">
                     <table class="table table-striped">
                         <tr>
-    <td><textarea id={{note._id}} class="tarea" id="heading" rows="1" >{{note.title}}</textarea></td>
-    <td><textarea id={{note._id}} ng-repeat="tag in note.tags" class="tarea label label-default" id="tags" rows="1" cols="10">{{tag}}</textarea></td>
+                            <td>
+                                <textarea id={{note._id}} class="tarea" id="heading" rows="1">{{note.title}}</textarea>
+                            </td>
+                            <td>
+                                <textarea id={{note._id}} ng-repeat="tag in note.tags" class="tarea label label-default" id="tags" rows="1" cols="10">{{tag}}</textarea>
+                            </td>
                         </tr>
                     </table>
-    <p><textarea id={{note._id}} class="tarea" rows="1" cols="100">{{note.body}}</textarea></p>
-
+                    <p>
+                        <textarea id={{note._id}} ng-blur="updateOnBlur()" class="tarea" rows="1" cols="100">{{note.body}}</textarea>
+                    </p>
                 </div>
-
             </div>
-
             <div class="col-md-4">
-            <h4>This is a form</h4>
+                <h4>This is a form</h4>
                 <form class="form-horizontal" action="/note" method="POST">
                     <textarea class="form-control" type="title" placeholder="title" name="title"></textarea>
                     <textarea class="form-control" name="tags" placeholder="tags" name="tags"></textarea>
@@ -93,9 +88,10 @@
                     <button class="btn bnt-default" type="submit">Submit</button>
                 </form>
             </div>
-
-        </div> <!-- end row -->
-    </div> <!-- end container -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
 </body>
 
 </html>
