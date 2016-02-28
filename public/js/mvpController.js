@@ -6,16 +6,17 @@ mvpController.controller('MvpController', function($scope, $http) {
     $http.get('/notes').
         success(function(data) {
             $scope.notes = data;
+        // perhaps
     });
 
     // update the data in place
-    $scope.updateOnBlur = function(id) {
-        console.log(id);
+    $scope.updateOnBlur = function(note) {
+        console.log(note);
 
-        // send the updated data to the backend to be saved!
-        // angular - http.put
-        // $http.put('/note/:id', data );
-
+        console.log(($scope.notes[0]));
+        // // send the updated data to the backend to be saved!
+        // // angular - http.put
+        // $http.put('/note/'+ id, data );
     };
 
 

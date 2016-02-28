@@ -44,7 +44,7 @@
             <div class="nav navbar-nav navbar-right">
                 <form class="nav navbar-nav navbar-form" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input ng-model="query" type="text" class="form-control" placeholder="Search">
                     </div>
                 </form>
                 <ul class="nav navbar-nav">
@@ -63,19 +63,19 @@
     <div class="container">
         <div class="row" ng-controller="MvpController">
             <div class="col-md-8">
-                <div ng-repeat="note in notes">
+                <div ng-repeat="note in notes | filter:query">
                     <table class="table table-striped">
                         <tr>
                             <td>
-                                <textarea id={{note._id}} class="tarea" id="heading" rows="1">{{note.title}}</textarea>
+                                <textarea id={{note._id}} class="tarea" id="heading" rows="1"></textarea>
                             </td>
                             <td>
-                                <textarea id={{note._id}} ng-repeat="tag in note.tags" class="tarea label label-default" id="tags" rows="1" cols="10">{{tag}}</textarea>
+                                <textarea id={{note._id}} ng-repeat="tag in note.tags" class="tarea label label-default" id="tags" rows="1" cols="10" ng-bind="tag"></textarea>
                             </td>
                         </tr>
                     </table>
                     <p>
-                        <textarea id={{note._id}} ng-blur="updateOnBlur(note._id)" class="tarea" rows="1" cols="100">{{note.body}}</textarea>
+                        <textarea id={{note._id}} ng-bind="note.body" ng-blur="updateOnBlur(note)" class="tarea" rows="1" cols="100"></textarea>
                     </p>
                 </div>
             </div>

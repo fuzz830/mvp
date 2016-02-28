@@ -71,6 +71,7 @@ app.post('/note', function(req, res) {
 
 app.put('/note/:id', function(req, res)  {
     //req.params.id should give you note/:id  maybe
+    console.log("Hey this is a put request!");
 });
 
 
