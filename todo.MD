@@ -45,3 +45,15 @@ http://www.codelord.net/2014/05/10/understanding-angulars-magic-dont-bind-to-pri
 
 # Completed
 - [done] file directory cleanup
+
+
+2016-02-28
+The data seems to be a one-way bindnig, it doesnt update automagically
+to include what we're looking for in the model
+
+So can we crete the index by something from the email i sent to RML
+
+and then assign an ng-model=?
+
+so we've got the $index assigned to the func param of the ng-repeat
+now see if we can attach the ng-model to the app?

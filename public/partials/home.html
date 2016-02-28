@@ -31,13 +31,13 @@
 </head>
 
 <body ng-app="mvpApp">
-    <nav class="navbar">
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">MVP</a>
             </div>
             <div>
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav ">
                     <li><a href="#">one</a></li>
                 </ul>
             </div>
@@ -63,11 +63,11 @@
     <div class="container">
         <div class="row" ng-controller="MvpController">
             <div class="col-md-8">
-                <div ng-repeat="note in notes | filter:query">
+                <div ng-repeat="note in notes track by $index">
                     <table class="table table-striped">
                         <tr>
                             <td>
-                                <textarea id={{note._id}} class="tarea" id="heading" rows="1"></textarea>
+                                <textarea id={{note._id}} ng-model="note.title" ng-blur="updateOnBlur($index)"  class="tarea" id="heading" rows="1"></textarea>
                             </td>
                             <td>
                                 <textarea id={{note._id}} ng-repeat="tag in note.tags" class="tarea label label-default" id="tags" rows="1" cols="10" ng-bind="tag"></textarea>
@@ -75,7 +75,11 @@
                         </tr>
                     </table>
                     <p>
-                        <textarea id={{note._id}} ng-bind="note.body" ng-blur="updateOnBlur(note)" class="tarea" rows="1" cols="100"></textarea>
+
+
+                    <!-- So setting the ng-model = note.body seems to work, so log as we get the upateon blur also set to the $index
+                    so this seems to work for the note-body. -->
+                        <textarea id={{note._id}} ng-model="note.body" ng-blur="updateOnBlur($index)" class="tarea" rows="1" cols="100"></textarea>
                     </p>
                 </div>
             </div>
