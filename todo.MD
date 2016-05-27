@@ -1,4 +1,16 @@
-#TODO
+# TODO
+
+2016-05-26: Thursday
+Wanted to add some of the timesheet thoughts that I've been thinking.
+
+However it's not really working out that way, as I've had to make minor adjstments to the code, and to document how to get the damn thing to work in the first place.
+
+In case you're wondering, that's 
+
+    node index.js
+
+I also was probably in the process of adding winston logging to the application.  I disabled it for now.
+
 
 
 ## Inline edit/update
