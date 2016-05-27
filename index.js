@@ -1,16 +1,16 @@
+// Index.js the whole shebang
 const express = require('express');
 const bodyParser = require('body-parser');
 const marked = require('marked');
+const PORT = 3000;
+var morgan = require('morgan');
 var path = require('path');
 var Datastore = require('nedb');
-
 var extend = require('util')._extend;
 
-// setup moment
-var moment = require('moment');
-moment().format();
-
-
+var util = require('util');
+var fs = require('fs');
+var FileStreamRotator = require('file-stream-rotator');
 
 
 // setup the express app
@@ -26,6 +26,32 @@ app.use(express.static(path.join(__dirname + "/public")));
 
 // db setup
 var db = new Datastore({filename: '/Users/michaelmathes/Documents/Programming/mvp/data/mvp.db', autoload: true, timestampData: true});
+
+
+// // setup logging
+// // var winLog = require(__dirname + '/config/winLog.js');
+// // var logsDirectory = __dirname + '/logs';
+
+// fs.existsSync(logsDirectory) || fs.mkdirSync(logsDirectory);
+
+// // create rotating file structure for logs
+// var accessLogStream = FileStreamRotator.getStream({
+//     filename: logsDirectory + "/access-%DATE%.log",
+//     frequency: "daily",
+//     verbose: false,
+//     date_format: "YYYY-MM-DD"
+// });
+
+// //Setup the access log
+// app.use(morgan('combined', {stream: accessLogStream}));
+
+
+// setup moment
+var moment = require('moment');
+moment().format();
+
+
+
 
 // Default template
 app.get('/', function(req, res) {
@@ -76,6 +102,7 @@ app.put('/note/:id', function(req, res)  {
 
 
 
-app.listen(3000, function() {
+app.listen(PORT, function() {
     console.log("MVP: Started on 3000");
+//    winLog.log('info', 'Started on 3000!');
 });

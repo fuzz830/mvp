@@ -1,7 +1,7 @@
 {
   "name": "mvp",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple minimum product app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,9 +11,12 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.4",
+    "file-stream-rotator": "0.0.6",
     "marked": "^0.3.5",
     "moment": "^2.11.2",
+    "morgan": "^1.7.0",
     "nedb": "^1.7.4",
-    "nodemon": "^1.8.1"
+    "nodemon": "^1.8.1",
+    "winston": "^2.2.0"
   }
 }
