@@ -1,3 +1,27 @@
+# Dependency directories
 node_modules
-*.db
+bower_components
 vendor
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# API keys and secrets
+.env
+
+# Databases
+*.db
+
+# Misc
+pids
+logs
+results
+tmp
+npm-debug.log
+
+
