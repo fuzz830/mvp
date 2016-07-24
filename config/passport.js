@@ -1,9 +1,9 @@
 const _ = require('lodash');
 const passport = require('passport');
-const request = require('request');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
+// const request = require('request');
+// const OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 
 const User = require('../models/User');
 
@@ -17,22 +17,21 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-/**
- * Sign in using Email and Password.
- */
-passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-  User.findOne({ email: email.toLowerCase() }, (err, user) => {
-    if (!user) {
-      return done(null, false, { msg: `Email ${email} not found.` });
-    }
-    user.comparePassword(password, (err, isMatch) => {
-      if (isMatch) {
-        return done(null, user);
+// Sign in using Email and Password.
+passport.use(new LocalStrategy({usernameField: 'email'},
+  (email, password, done) => {
+    User.findOne({email: email.toLowerCase()}, (err, user) => {
+      if (!user) {
+        return done(null, false, {msg: `Email ${email} not found.`});
       }
-      return done(null, false, { msg: 'Invalid email or password.' });
+      user.comparePassword(password, (err, isMatch) => {
+        if (isMatch) {
+          return done(null, user);
+        }
+        return done(null, false, { msg: 'Invalid email or password.' });
+      });
     });
-  });
-}));
+  }));
 
 /**
  * OAuth Strategy Overview
@@ -49,11 +48,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
  *       - Else create a new account.
  */
 
-
-
-/**
- * Sign in with Google.
- */
+// Sign in with Google.
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_ID,
   clientSecret: process.env.GOOGLE_SECRET,
@@ -105,10 +100,7 @@ passport.use(new GoogleStrategy({
   }
 }));
 
-
-/**
- * Login Required middleware.
- */
+// Login Required middleware.
 exports.isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
@@ -116,13 +108,11 @@ exports.isAuthenticated = (req, res, next) => {
   res.redirect('/login');
 };
 
-/**
- * Authorization Required middleware.
- */
+// Authorization Required middleware.
 exports.isAuthorized = (req, res, next) => {
   const provider = req.path.split('/').slice(-1)[0];
 
-  if (_.find(req.user.tokens, { kind: provider })) {
+  if (_.find(req.user.tokens, {kind: provider})) {
     next();
   } else {
     res.redirect(`/auth/${provider}`);

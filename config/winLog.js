@@ -1,16 +1,18 @@
 // Setup Logging with winston
+var path = require('path');
 var winston = require('winston');
-var logsDirectory = __dirname + '/../logs';
+var logsDirectory = path.join(__dirname, '/../logs');
+var logFileName = path.join(logsDirectory, "/winlog.log");
 
-var winLog = new winston.logger({
+var winLog = new winston.Logger({
     transports: [
         new winston.transports.File({
-        level: 'debug',
-        filename: logsDirectory + "/winlog.log",
-        handleExceptions: true,
-        json: true,
-        maxsize: 5242880,
-        maxfiles: 5,
+            level: 'debug',
+            filename: logFileName,
+            handleExceptions: true,
+            json: true,
+            maxsize: 5242880,
+            maxfiles: 5
         }),
         new winston.transports.Console({
             level: 'debug',
@@ -18,10 +20,9 @@ var winLog = new winston.logger({
             json: false,
             colorise: true
         })
-      ],
+    ],
     exitOnError: false
 });
-
 
 winLog.emitErrs = true;
 
