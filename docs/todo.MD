@@ -5,8 +5,8 @@
     + [X] Adjust git ignore for packages?
     + [X] Create .eslint ignore
 - [] Run ESLINT
-    +  on index.js
-    +  on winlog
+    [X]  on index.js
+    [X]  on winlog
 - [] Setup WinLogging correctly
 
 - [] Setup package.json for npm run stuff
