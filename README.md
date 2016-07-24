@@ -1,8 +1,10 @@
 # MVP 
 
-This is a mvp app.
+# Start it
+    npm start
 
-# To Start it
+# To Test
+    npm test
 
-    node index.json
-
+# To run the linter
+    npm run lint

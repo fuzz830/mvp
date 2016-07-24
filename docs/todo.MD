@@ -1,22 +1,31 @@
 # TODO
 
-2016-05-26: Thursday
-Wanted to add some of the timesheet thoughts that I've been thinking.
+2016-07-24: Sunday.  Grand Rapids Airport
+- [] Setup ESLint
+    + [] Adjust git ignore for packages?
+    + [] Create .eslint ignore
+- [] Setup package.json for npm run stuff
+- [] Syntax highlighting for json files?
+- [] move index into 'app' directory?
+- [] Setup mocha & chai for tests
 
-However it's not really working out that way, as I've had to make minor adjstments to the code, and to document how to get the damn thing to work in the first place.
+2016-05-26: Thursday
+Wanted to add some of the time-sheet thoughts that I've been thinking.
+
+However it's not really working out that way, as I've had to make minor adjustments to the code, and to document how to get the damn thing to work in the first place.
 
 In case you're wondering, that's 
 
     node index.js
 
-I also was probably in the process of adding winston logging to the application.  I disabled it for now.
+I also was probably in the process of adding Winston logging to the application.  I disabled it for now.
 
 
 
 ## Inline edit/update
  - [X] Add _id to the div?
- - [X] migrate js controller functions to standaone file
- - [X] onblur run js function?
+ - [X] migrate js controller functions to standalone file
+ - [X] on-blur run js function?
  
  COB Saturday:
  updateOnBlur is completed.  I have it setup so that it sends the id of the current object.
