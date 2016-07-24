@@ -3,15 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = 3000;
 var path = require('path');
+var fs = require('fs');
 var Datastore = require('nedb');
-// var extend = require('util')._extend;
-// const marked = require('marked');
-// var morgan = require('morgan');
-
-// Needed for winston logging
-// var util = require('util');
-// var fs = require('fs');
-// var FileStreamRotator = require('file-stream-rotator');
+var morgan = require('morgan');  // Setup Logging
+var FileStreamRotator = require('file-stream-rotator');  // Also for logging
 
 // setup the express app
 const app = express();
@@ -27,21 +22,24 @@ var dbPath = path.join(__dirname, '/data/mvp.db');
 var db = new Datastore({filename: dbPath, autoload: true, timestampData: true});
 
 // setup logging
-// var winLog = require(__dirname + '/config/winLog.js');
-// var logsDirectory = __dirname + '/logs';
+var winLog = require(path.join(__dirname, '/config/winLog.js'));
+var logsDirectory = path.join(__dirname, '/logs');
 
-// fs.existsSync(logsDirectory) || fs.mkdirSync(logsDirectory);
+// create the logging directory if it doesn't not exist.
+if (!(fs.existsSync(logsDirectory))) {
+    fs.mkdirSync(logsDirectory);
+}
 
-// // create rotating file structure for logs
-// var accessLogStream = FileStreamRotator.getStream({
-//     filename: logsDirectory + "/access-%DATE%.log",
-//     frequency: "daily",
-//     verbose: false,
-//     date_format: "YYYY-MM-DD"
-// });
+// create rotating file structure for access logs
+var accessLogStream = FileStreamRotator.getStream({
+    filename: logsDirectory + "/access-%DATE%.log",
+    frequency: "daily",
+    verbose: false,
+    date_format: "YYYY-MM-DD" // eslint-disable-line
+});
 
-// //Setup the access log
-// app.use(morgan('combined', {stream: accessLogStream}));
+// Setup the access log
+app.use(morgan('combined', {stream: accessLogStream}));
 
 // setup moment
 var moment = require('moment');
@@ -100,5 +98,5 @@ app.put('/note/:id', function(req, res) {
 
 app.listen(PORT, function() {
     console.log("MVP: Started on 3000");
-    // winLog.log('info', 'Started on 3000!');
+    winLog.log('info', 'Started on 3000!');
 });
