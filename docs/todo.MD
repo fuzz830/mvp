@@ -1,9 +1,14 @@
 # TODO
 
 2016-07-24: Sunday.  Grand Rapids Airport
-- [] Setup ESLint
-    + [] Adjust git ignore for packages?
-    + [] Create .eslint ignore
+- [X] Setup ESLint
+    + [X] Adjust git ignore for packages?
+    + [X] Create .eslint ignore
+- [] Run ESLINT
+    +  on index.js
+    +  on winlog
+- [] Setup WinLogging correctly
+
 - [] Setup package.json for npm run stuff
 - [] Syntax highlighting for json files?
 - [] move index into 'app' directory?
