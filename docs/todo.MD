@@ -1,5 +1,13 @@
 # TODO / Work Log for mvp-app
 
+# 2016-07-26: Tuesday.  Home
+- [] Work to finish the refactor
+	clean out the index.js and refactor the logging code
+- [] Add and test the user auth modules
+- [] setup servers
+- [] SSL termination with Lets' encrypt certs
+
+
 ## 2016-07-24: Sunday.  Grand Rapids Airport
 - [X] Setup package.json for npm run stuff
 - [X] Setup ESLint
