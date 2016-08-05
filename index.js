@@ -6,7 +6,8 @@ var path = require('path');
 var fs = require('fs');
 var Datastore = require('nedb');
 var morgan = require('morgan');  // Setup Logging
-var FileStreamRotator = require('file-stream-rotator');  // Also for logging
+
+var logger = require(path.join(__dirname, '/config/logConfig.js'));
 
 // setup the express app
 const app = express();
@@ -21,25 +22,9 @@ app.use(express.static(path.join(__dirname, "/public")));
 var dbPath = path.join(__dirname, '/data/mvp.db');
 var db = new Datastore({filename: dbPath, autoload: true, timestampData: true});
 
-// setup logging
-var winLog = require(path.join(__dirname, '/config/winLog.js'));
-var logsDirectory = path.join(__dirname, '/logs');
-
-// create the logging directory if it doesn't not exist.
-if (!(fs.existsSync(logsDirectory))) {
-    fs.mkdirSync(logsDirectory);
-}
-
-// create rotating file structure for access logs
-var accessLogStream = FileStreamRotator.getStream({
-    filename: logsDirectory + "/access-%DATE%.log",
-    frequency: "daily",
-    verbose: false,
-    date_format: "YYYY-MM-DD" // eslint-disable-line
-});
 
 // Setup the access log
-app.use(morgan('combined', {stream: accessLogStream}));
+app.use(morgan('combined', {stream: logger.stream}));
 
 // setup moment
 var moment = require('moment');
@@ -97,6 +82,5 @@ app.put('/note/:id', function(req, res) {
 });
 
 app.listen(PORT, function() {
-    console.log("MVP: Started on 3000");
-    winLog.log('info', 'Started on 3000!');
+    logger.appLog.log('info', 'Started on 3000!');
 });
